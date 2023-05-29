@@ -11,6 +11,13 @@ abstractFile = open("Abstract.html", "r", encoding="utf8")
 textToAdd = abstractFile.read()
 abstractFile.close()
 
+citeCounter = 1
+point = textToAdd.find('%cite%')
+while(point != -1):
+    textToAdd = textToAdd[:point] + str(citeCounter) + textToAdd[point+6:]
+    point = textToAdd.find('%cite%')
+    citeCounter += 1
+
 textToAdd = textToAdd.replace('--', '—')
 
 mainFile = open("index.html", "w", encoding="utf8")
